@@ -33,13 +33,63 @@ class Game {
   
     play(){
       form.hide()
+      background(bgimg)
 
-     background(bgimg)
+      Player.getPlayerInfo()
+if(allPlayers!==undefined)
+{
 
-
-     
-       
+    for(var plr in allPlayers)
+    {
+      console.log(player.index)
+      
+          if(player.index===1)
+          {
+            console.log(plr)
+            if(keyCode===UP_ARROW){
+              hero1.y=hero1.y-4
+              player.changePosition(0,-4)  
+            }
+            if(keyCode===DOWN_ARROW){
+              hero1.y=hero1.y+4
+              player.changePosition(0,4)
+            }
+            if(keyCode===LEFT_ARROW){
+              hero1.x=hero1.x-4
+              player.changePosition(-4,0)
+            }
+            if(keyCode===RIGHT_ARROW){
+              hero1.x=hero1.x+4
+              player.changePosition(0,4)
+             }
+             hero1.x=hero1.x-0.5
+          }
+          
+          if(player.index===2)
+          {
+            console.log(plr)
+            if(keyCode===UP_ARROW){
+              hero2.y=hero2.y-4  
+            }
+            if(keyCode===DOWN_ARROW){
+              hero2.y=hero2.y+4
+            }
+            if(keyCode===LEFT_ARROW){
+              hero2.x=hero2.x-4
+            }
+            if(keyCode===RIGHT_ARROW){
+              hero2.x=hero2.x+4
+             }
+             hero2.x=hero2.x-0.5
+          }
+      }
+      hero1.collide(invisibl)
+      hero2.collide(invisibl)
+    
+  }
        }
+    
+      
     end(){
       
     }

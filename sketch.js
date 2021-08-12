@@ -9,9 +9,9 @@ var gameState=0;
 var database,game,player,form,playerCount;
 
 var bgimg;
-
-
-
+var hero1,hero2
+var invisibl
+var allPlayers
 
 function preload(){
 
@@ -38,17 +38,9 @@ lrecover=loadAnimation("h/lkr1.png","h/lkr2.png","h/lkr3.png","h/lkr4.png","h/lk
 jump=loadAnimation("h/jump1.png","h/jump2.png","h/jump3.png","h/jump4.png","h/jump5.png","h/jump6.png","h/jump7.png")
 ljump=loadAnimation("h/ljump1.png","h/ljump2.png","h/ljump3.png","h/ljump4.png","h/ljump5.png","h/ljump6.png","h/ljump7.png")
 
+idel=loadAnimation("h/idel1.png","h/idel2.png","h/idel3.png","h/idel4.png");
+lidel=loadAnimation("h/lidel1.png","h/lidel2.png","h/lidel3.png","h/lidel4.png");
 
-
-
-
-
-
-
-
- 
-
- 
 }
 
 function setup() {
@@ -56,16 +48,22 @@ function setup() {
 
 database=firebase.database()
 
-if(gameState===1)
-{
-  hero=createSprite(width/5,height-170,20,20)
-  hero.addAnimation("hero ideal",ljump)
-  hero.scale=1.3
+//if(gameState===1)
+//{
+  hero1=createSprite(width/5,height-170,20,20)
+  hero1.addAnimation("hero1 ideal",idel)
+  hero1.scale=1.3
+  hero1.visible=false
+
+  hero2=createSprite(width/1.5,height-170,20,20)
+  hero2.addAnimation("hero2 idel",lidel)
+  hero2.scale=1.3
+  hero2.visible=false
 
  
 
   invisibl=createSprite(width/2,height-100,width,10);
-}
+//}
  game=new Game()
    game.getState();
 game.start();
@@ -82,12 +80,15 @@ function draw() {
  {
   gameState=1;
   game.update(1);
-  setup();
+  //setup();
   
   
  }
  if(gameState===1)
  {
+  hero1.visible=true
+  hero2.visible=true
+
    game.play();
  }
   

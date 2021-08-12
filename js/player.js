@@ -3,6 +3,8 @@ class Player {
       this.index = null;
       this.name = null;
       this.rank=null;
+      this.xpos=null;
+      this.ypos=null;
     }
   
     getCount(){
@@ -11,7 +13,17 @@ class Player {
         playerCount = data.val();
       })
     }
-  
+
+    getposition()
+    {
+      var playerpos = database.ref('players/player'+this.index);
+      playerpos.on("value",(data)=>{
+        pos = data.val();
+      })
+      this.xpos=pos.x;
+      this.ypos=pos.y;
+    }
+
     updateCount(count){
       database.ref('/').update({
         playerCount: count
@@ -22,6 +34,8 @@ class Player {
       var playerIndex = "players/player" + this.index;
       database.ref(playerIndex).set({
         name:this.name,
+        x:this.xpos,
+        y:this.ypos
       });
     }
   
@@ -31,6 +45,14 @@ class Player {
         allPlayers = data.val();
       })
     }
+
+    changePosition(myx,myy)
+    {
+       database.ref('players/player'+player.index).update({
+         'x':this.xpos+myx,
+         'y':this.ypos+myy
+       }) 
+    }  
     
   }
   

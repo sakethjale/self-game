@@ -29,6 +29,17 @@ class Form {
         player.name = this.input.value();
         playerCount+=1;
         player.index = playerCount;
+        if(player.index===1)
+        {
+          hero1.x=player.xpos
+          hero1.y=player.ypos
+        }
+        if(player.index===2)
+        {
+          hero2.x=player.xpos
+          hero2.y=player.ypos
+        }
+
         player.update();
         player.updateCount(playerCount);
         this.greeting.html("Hello " + player.name)
